@@ -1,14 +1,15 @@
 export const categories = [
     {
-        name: "Computers",
-        image: "https://images.unsplash.com/photo-1547082299-de196ea013d6?q=80&w=2000&auto=format&fit=crop",
+        name: "Granos",
+        image: "https://media.istockphoto.com/id/157581211/es/foto/granos-de-cereales-y-composici%C3%B3n.jpg?s=612x612&w=0&k=20&c=oYDQTo5X36Ap57F5h3JeWcLaiL8g_HVsNj5A0TEggXc=",
         path: "/category/computers",
     },
     {
-        name: "Phones",
-        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=2000&auto=format&fit=crop",
+        name: "Hortalizas",
+        image: "https://www.naturalcastello.com/wp-content/uploads/2019/08/propiedades-hortalizas.jpg",
         path: "/category/phones",
     },
+    /*
     {
         name: "Audio",
         image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=2000&auto=format&fit=crop",
@@ -18,18 +19,12 @@ export const categories = [
         name: "Accessories",
         image: "https://i.ytimg.com/vi/6nF-4i3RrG0/hq720.jpg?sqp=-oaymwEXCK4FEIIDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLA1Ir1cXQna8UT0zPxI62l1ZlvvEQ",
         path: "/category/accessories",
-    },
+    },*/
 ];
 
 export const featuredLinks = [
-    {
-        name: "About Us",
-        image:
-            "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
-        path: "/about",
-        className: "lg:col-span-2",
-        imageClass: "aspect-square lg:aspect-[2/1]",
-    },
+    
+    /*
     {
         name: "Our Blog",
         image:
@@ -37,7 +32,8 @@ export const featuredLinks = [
         path: "/blog",
         className: "lg:col-span-2",
         imageClass: "aspect-square lg:aspect-[2/1]",
-    },
+    },*/
+    /*
     {
         name: "Contact Us",
         image:
@@ -46,6 +42,7 @@ export const featuredLinks = [
         className: "lg:col-span-4",
         imageClass: "aspect-[2/1] lg:aspect-[4/1]",
     },
+    */
 ];
 
 export const featuredProducts = [

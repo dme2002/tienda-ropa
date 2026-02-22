@@ -2,147 +2,134 @@
 import { Icon } from "astro-icon/components";
 ---
 
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+    <div class="bg-primary rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden relative group">
+        <div class="absolute -top-12 -right-12 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:bg-white/20 transition-all duration-700"></div>
+        
+        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="text-center md:text-left">
+                <h2 class="text-3xl md:text-4xl font-black text-primary-content mb-4 tracking-tight">
+                    ¿Listo para exportar tus productos?
+                </h2>
+                <p class="text-primary-content/80 max-w-xl text-lg leading-relaxed">
+                    Conoce toda la documentación y normativas internacionales necesarias para llevar tu mercancía al siguiente nivel sin contratiempos.
+                </p>
+            </div>
+            
+            <a href="/requisitos" class="btn btn-lg bg-white border-none text-primary hover:bg-base-200 shadow-xl gap-3 px-8 text-lg font-bold">
+                <Icon name="lucide:file-text" class="w-6 h-6" />
+                VER REQUISITOS
+            </a>
+        </div>
+    </div>
+</section>
+
 <footer class="bg-base-300 text-base-content pt-16 pb-8 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12"
-        >
-            <!-- Brand Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            
             <div class="col-span-1 lg:col-span-1">
                 <a href="/" class="flex items-center gap-2 mb-6 group">
-                    <div
-                        class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg"
-                    >
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg">
                         <Icon
                             name="lucide:shopping-bag"
                             class="w-6 h-6 text-primary-content"
                         />
                     </div>
-                    <span
-                        class="text-2xl font-bold tracking-tighter gradient-text"
-                    >
-                        E-COMMER
+                    <span class="text-2xl font-bold tracking-tighter gradient-text">
+                        ECO-EXPORTACIONES
                     </span>
                 </a>
-                <p class="text-base-content/70 mb-6 leading-relaxed">
-                    Premium tech gear for the modern professional. Elevate your
-                    digital lifestyle with our curated collection.
+                <p class="text-base-content/70 mb-6 text-sm leading-relaxed">
+                    Líderes en logística internacional y distribución de productos eco-amigables. Conectando mercados globales con responsabilidad ambiental.
                 </p>
-                <!-- Socials -->
+                
+                <ul class="space-y-3 mb-6 text-sm text-base-content/80">
+                    <li class="flex items-start gap-3">
+                        <Icon name="lucide:map-pin" class="w-5 h-5 text-primary shrink-0" />
+                        <span>Col. Kennedy Calle Principal</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <Icon name="lucide:mail" class="w-5 h-5 text-primary shrink-0" />
+                        <span>contacto@eco-exportaciones.com</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <Icon name="lucide:phone" class="w-5 h-5 text-primary shrink-0" />
+                        <span>+504 9766 5442</span>
+                    </li>
+                </ul>
+
                 <div class="flex gap-4">
-                    <a
-                        href="#"
-                        class="btn btn-circle btn-sm btn-ghost hover:bg-primary/20 hover:text-primary transition-colors"
-                        aria-label="Twitter"
-                    >
+                    <a href="https://wa.me/50497665442" target="_blank" rel="noopener noreferrer" class="btn btn-circle btn-sm btn-ghost hover:bg-primary/20 hover:text-primary transition-colors" aria-label="WhatsApp">
+                        <Icon name="lucide:message-circle" class="w-5 h-5" />
+                    </a>
+                    <a href="#" class="btn btn-circle btn-sm btn-ghost hover:bg-primary/20 hover:text-primary transition-colors" aria-label="Twitter">
                         <Icon name="lucide:twitter" class="w-5 h-5" />
                     </a>
-                    <a
-                        href="#"
-                        class="btn btn-circle btn-sm btn-ghost hover:bg-primary/20 hover:text-primary transition-colors"
-                        aria-label="Instagram"
-                    >
+                    <a href="https://www.instagram.com/exportspm/" class="btn btn-circle btn-sm btn-ghost hover:bg-primary/20 hover:text-primary transition-colors" aria-label="Instagram">
                         <Icon name="lucide:instagram" class="w-5 h-5" />
                     </a>
-                    <a
-                        href="#"
-                        class="btn btn-circle btn-sm btn-ghost hover:bg-primary/20 hover:text-primary transition-colors"
-                        aria-label="Github"
-                    >
+                    <a href="#" class="btn btn-circle btn-sm btn-ghost hover:bg-primary/20 hover:text-primary transition-colors" aria-label="Github">
                         <Icon name="lucide:github" class="w-5 h-5" />
                     </a>
                 </div>
             </div>
 
-            <!-- Links Column 1 -->
+            <div class="col-span-1">
+                <h3 class="font-bold text-lg mb-6 text-base-content/90 flex items-center gap-2">
+                    <Icon name="lucide:clock" class="w-5 h-5 text-primary" />
+                    Horario de Atención
+                </h3>
+                <ul class="space-y-3 text-sm text-base-content/70">
+                    <li class="flex justify-between border-b border-base-content/10 pb-2">
+                        <span>Lunes - Viernes:</span>
+                        <span class="font-medium text-base-content text-right">8:00 AM - 6:00 PM</span>
+                    </li>
+                    <li class="flex justify-between border-b border-base-content/10 pb-2">
+                        <span>Sábados:</span>
+                        <span class="font-medium text-base-content text-right">9:00 AM - 2:00 PM</span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>Domingos:</span>
+                        <span class="text-error font-medium text-right">Cerrado</span>
+                    </li>
+                </ul>
+                
+            </div>
+
             <div>
                 <h3 class="font-bold text-lg mb-6 text-base-content/90">
-                    Shop
+                    Servicios
                 </h3>
-                <ul class="space-y-4">
+                <ul class="space-y-4 text-sm">
                     <li>
-                        <a
-                            href="#"
-                            class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block"
-                            >All Products</a
-                        >
+                        <a href="#" class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block">Carga Marítima y Aérea</a>
                     </li>
                     <li>
-                        <a
-                            href="#"
-                            class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block"
-                            >Featured</a
-                        >
+                        <a href="#" class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block">Gestión de Aduanas</a>
                     </li>
                     <li>
-                        <a
-                            href="#"
-                            class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block"
-                            >New Arrivals</a
-                        >
+                        <a href="#" class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block">Seguros de Mercancía</a>
                     </li>
                     <li>
-                        <a
-                            href="#"
-                            class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block"
-                            >Discounts</a
-                        >
+                        <a href="#" class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block">Rastreo en Tiempo Real</a>
                     </li>
                 </ul>
             </div>
 
-            <!-- Links Column 2 -->
             <div>
                 <h3 class="font-bold text-lg mb-6 text-base-content/90">
-                    Support
+                    Suscríbete
                 </h3>
-                <ul class="space-y-4">
-                    <li>
-                        <a
-                            href="#"
-                            class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block"
-                            >Contact Us</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block"
-                            >FAQs</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block"
-                            >Shipping & Returns</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block"
-                            >Order Status</a
-                        >
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Newsletter -->
-            <div>
-                <h3 class="font-bold text-lg mb-6 text-base-content/90">
-                    Stay Updated
-                </h3>
-                <p class="text-base-content/70 mb-4 text-sm">
-                    Subscribe to our newsletter for exclusive deals and tech
-                    news.
+                <p class="text-base-content/70 mb-4 text-sm leading-relaxed">
+                    Recibe reportes mensuales sobre las tendencias del mercado global de exportación.
                 </p>
                 <div class="form-control w-full">
                     <div class="relative">
                         <input
-                            type="text"
-                            placeholder="Enter your email"
-                            class="input input-bordered w-full pr-12 focus:outline-hidden focus:border-primary"
+                            type="email"
+                            placeholder="correo@empresa.com"
+                            class="input input-bordered w-full pr-12 focus:outline-none focus:border-primary text-sm"
                         />
                         <button
                             class="absolute top-0 right-0 rounded-l-none btn btn-primary px-3"
@@ -155,19 +142,14 @@ import { Icon } from "astro-icon/components";
             </div>
         </div>
 
-        <div
-            class="border-t border-base-content/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-base-content/50"
-        >
+        <div class="border-t border-base-content/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-base-content/50">
             <p>
-                &copy; {new Date().getFullYear()} E-COMMER. All rights reserved.
+                &copy; {new Date().getFullYear()} ECO-EXPORTACIONES S.A. Todos los derechos reservados.
             </p>
             <div class="flex gap-6">
-                <a href="#" class="hover:text-base-content transition-colors"
-                    >Privacy Policy</a
-                >
-                <a href="#" class="hover:text-base-content transition-colors"
-                    >Terms of Service</a
-                >
+                <a href="#" class="hover:text-base-content transition-colors">Aviso Legal</a>
+                <a href="#" class="hover:text-base-content transition-colors">Política de Cookies</a>
+                <a href="#" class="hover:text-base-content transition-colors">Términos de Servicio</a>
             </div>
         </div>
     </div>
@@ -177,8 +159,8 @@ import { Icon } from "astro-icon/components";
     .gradient-text {
         background: linear-gradient(
             135deg,
-            var(--color-primary) 0%,
-            #6366f1 100%
+            oklch(var(--p)) 0%,
+            oklch(var(--s)) 100%
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;

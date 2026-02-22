@@ -6,6 +6,7 @@ interface Product {
     price: number;
     description: string;
     category: string;
+    origin:string;
     stock: number;
     badge?: string;
     discount?: number;
@@ -33,6 +34,7 @@ const discountedPrice = product.price * (1 - (product.discount || 0) / 100);
         category: product.category,
         discount: product.discount,
         stock: product.stock,
+        origin:product.origin,
     })}
 >
     <!-- Header Info -->
@@ -42,6 +44,7 @@ const discountedPrice = product.price * (1 - (product.discount || 0) / 100);
         >
             {product.category}
             {product.badge ? `/ ${product.badge}` : ""}
+            {product.origin}
         </span>
         <h1
             class="text-4xl md:text-5xl font-black text-slate-950 uppercase tracking-tighter leading-tight"

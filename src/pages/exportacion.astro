@@ -1,0 +1,53 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const servicios = [
+    {
+        title: "Granos Básicos",
+        desc: "Frijoles rojos de seda, maíz amarillo industrial y lentejas de alta pureza.",
+        img: "https://www.buenprovecho.hn/wp-content/uploads/2022/11/5EE712A2-01F4-409C-844F-5C6D1056FA63.jpeg"
+    },
+    {
+        title: "Hortalizas Frescas",
+        desc: "Tomate Roma, cebolla blanca premium, brócoli y zanahorias grado exportación.",
+        img: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=800&q=80"
+    },
+];
+---
+
+<Layout title="Servicios de Exportación | Eco-Export">
+    <main class="bg-white">
+        <section class="bg-primary py-20 text-center text-white">
+            <div class="max-w-4xl mx-auto px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Nuestra Exportación</h1>
+                <p class="text-xl opacity-90">Llevamos la calidad de nuestra tierra a mercados internacionales con los más altos estándares de logística y frescura.</p>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto py-20 px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                {servicios.map(item => (
+                    <div class="group overflow-hidden rounded-2xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all">
+                        <div class="h-64 overflow-hidden">
+                            <img src={item.img} alt={item.title} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-primary mb-3">{item.title}</h3>
+                            <p class="text-gray-600 mb-6">{item.desc}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <section class="bg-gray-50 py-16">
+            <div class="max-w-4xl mx-auto text-center px-4">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800">¿Listo para enviar tu carga?</h2>
+                <p class="text-gray-600 mb-8">Utiliza nuestra herramienta digital para obtener un costo estimado de logística e impuestos al instante.</p>
+                <a href="/calculadora" class="bg-green-600 text-white px-10 py-4 rounded-xl font-bold hover:bg-green-700 transition-colors shadow-lg inline-block">
+                    Ir a la Calculadora de Envío
+                </a>
+            </div>
+        </section>
+    </main>
+</Layout>

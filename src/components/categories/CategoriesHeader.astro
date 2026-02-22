@@ -1,82 +1,142 @@
 ---
-interface Props {
-    title: string;
-    image?: string;
-}
-
-const { title, image } = Astro.props;
+import { Icon } from "astro-icon/components";
 ---
 
-<section class="relative py-24 md:py-32 overflow-hidden bg-slate-900">
-    <!-- Background Image & Overlays -->
-    <div class="absolute inset-0">
-        <!-- Main Background Image -->
-        {
-            image && (
-                <img
-                    src={image}
-                    alt={title}
-                    class="absolute inset-0 w-full h-full object-cover"
-                />
-            )
-        }
+<footer class="bg-base-300 text-base-content pt-16 pb-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            
+            <div class="col-span-1 lg:col-span-1">
+                <a href="/" class="flex items-center gap-2 mb-6 group">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg">
+                        
+                    </div>
+                    <span class="text-2xl font-bold tracking-tighter gradient-text">
+                        ECO-EXPORTACIONES
+                    </span>
+                </a>
+                <p class="text-base-content/70 mb-6 leading-relaxed">
+                    Soluciones integrales de exportación con un enfoque sostenible y eficiente.
+                </p>
+                
+                <div class="flex gap-4">
+                    <a
+                        href="https://wa.me/TUNUMERO" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-circle btn-sm btn-ghost hover:bg-primary/20 hover:text-primary transition-colors"
+                        aria-label="WhatsApp"
+                    >
+                        <Icon name="lucide:message-circle" class="w-5 h-5" />
+                    </a>
+                    <a
+                        href="#"
+                        class="btn btn-circle btn-sm btn-ghost hover:bg-primary/20 hover:text-primary transition-colors"
+                        aria-label="Twitter"
+                    >
+                        <Icon name="lucide:twitter" class="w-5 h-5" />
+                    </a>
+                    <a
+                        href="https://www.instagram.com/exportspm/"
+                        class="btn btn-circle btn-sm btn-ghost hover:bg-primary/20 hover:text-primary transition-colors"
+                        aria-label="Instagram"
+                    >
+                        <Icon name="lucide:instagram" class="w-5 h-5" />
+                    </a>
+                    <a
+                        href="#"
+                        class="btn btn-circle btn-sm btn-ghost hover:bg-primary/20 hover:text-primary transition-colors"
+                        aria-label="Github"
+                    >
+                        <Icon name="lucide:github" class="w-5 h-5" />
+                    </a>
+                </div>
+            </div>
 
-        <!-- Dark Overlay to ensure text readability -->
-        <div
-            class="absolute inset-0 bg-slate-950/60 transition-opacity duration-700"
-        >
+            <div class="col-span-1">
+                <h3 class="font-bold text-lg mb-6 text-base-content/90 flex items-center gap-2">
+                    <Icon name="lucide:clock" class="w-5 h-5 text-primary" />
+                    Horario de Atención
+                </h3>
+                <ul class="space-y-3 text-sm text-base-content/70">
+                    <li class="flex justify-between border-b border-base-content/10 pb-2">
+                        <span>Lunes - Viernes:</span>
+                        <span class="font-medium text-base-content text-right">9:00 AM - 6:00 PM</span>
+                    </li>
+                    <li class="flex justify-between border-b border-base-content/10 pb-2">
+                        <span>Sábados:</span>
+                        <span class="font-medium text-base-content text-right">9:00 AM - 1:00 PM</span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>Domingos:</span>
+                        <span class="text-error font-medium text-right">Cerrado</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg mb-6 text-base-content/90">
+                    Compañía
+                </h3>
+                <ul class="space-y-4 text-sm">
+                    <li>
+                        <a href="#" class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block">Sobre Nosotros</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block">Servicios</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-base-content/60 hover:text-primary hover:translate-x-1 transition-all inline-block">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg mb-6 text-base-content/90">
+                    Newsletter
+                </h3>
+                <p class="text-base-content/70 mb-4 text-sm">
+                    Suscríbete para recibir actualizaciones y noticias.
+                </p>
+                <div class="form-control w-full">
+                    <div class="relative">
+                        <input
+                            type="email"
+                            placeholder="tu@email.com"
+                            class="input input-bordered w-full pr-12 focus:outline-none focus:border-primary"
+                        />
+                        <button
+                            class="absolute top-0 right-0 rounded-l-none btn btn-primary px-3"
+                            aria-label="Subscribe"
+                        >
+                            <Icon name="lucide:arrow-right" class="w-5 h-5" />
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Pattern Overlay -->
-        <div
-            class="absolute inset-0 opacity-20"
-            style="background-image: radial-gradient(circle at 2px 2px, rgba(234, 179, 8, 0.4) 1px, transparent 0); background-size: 32px 32px;"
-        >
-        </div>
-
-        <!-- Gradient Vignette -->
-        <div
-            class="absolute inset-0 bg-linear-to-b from-transparent via-slate-950/40 to-slate-950"
-        >
-        </div>
-    </div>
-
-    <!-- Content -->
-    <div class="relative max-w-7xl mx-auto px-6 text-center">
-        <div class="space-y-4">
-            <span
-                class="text-primary font-black uppercase text-xs tracking-[0.5em] animate-fade-in-up"
-            >
-                Category Selection
-            </span>
-            <h1
-                class="text-5xl md:text-7xl font-black text-white uppercase italic tracking-tighter animate-fade-in-up"
-                style="animation-delay: 100ms;"
-            >
-                {title}
-            </h1>
-            <div
-                class="w-16 h-1.5 bg-primary mx-auto rounded-full animate-fade-in-up"
-                style="animation-delay: 200ms;"
-            >
+        <div class="border-t border-base-content/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-base-content/50">
+            <p>
+                &copy; {new Date().getFullYear()} ECO-EXPORTACIONES. Todos los derechos reservados.
+            </p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-base-content transition-colors">Política de Privacidad</a>
+                <a href="#" class="hover:text-base-content transition-colors">Términos de Servicio</a>
             </div>
         </div>
     </div>
-</section>
+</footer>
 
 <style>
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .animate-fade-in-up {
-        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    .gradient-text {
+        background: linear-gradient(
+            135deg,
+            var(--color-primary, #4f46e5) 0%,
+            #6366f1 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 </style>

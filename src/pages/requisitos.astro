@@ -1,0 +1,84 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+
+const requisitos = [
+    {
+        title: "RTN del Exportador",
+        description: "Registro Tributario Nacional vigente y actualizado para operaciones de comercio exterior.",
+        icon: "lucide:id-card",
+        color: "bg-blue-500"
+    },
+    {
+        title: "Permiso Fitosanitario",
+        description: "Certificado oficial que garantiza que los productos vegetales cumplen con las normas sanitarias internacionales.",
+        icon: "lucide:leaf",
+        color: "bg-green-500"
+    },
+    {
+        title: "Factura Comercial",
+        description: "Documento legal que detalla la transacción, incluyendo valor, cantidad y términos de venta (Incoterms).",
+        icon: "lucide:file-text",
+        color: "bg-orange-500"
+    },
+    {
+        title: "Certificado de Origen",
+        description: "Prueba documental que acredita que el producto fue producido en el país para aplicar a beneficios arancelarios.",
+        icon: "lucide:globe",
+        color: "bg-purple-500"
+    },
+    {
+        title: "Lista de Empaque (Packing List)",
+        description: "Detalle preciso del contenido de cada bulto, pesos y dimensiones para facilitar la inspección aduanera.",
+        icon: "lucide:package",
+        color: "bg-slate-700"
+    }
+];
+---
+
+<Layout title="Requisitos de Exportación | ECO-EXPORTACIONES">
+    <div class="py-16 bg-base-200 min-h-screen">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-black mb-4">Documentación Necesaria</h1>
+                <p class="text-lg text-base-content/70">
+                    Para asegurar un proceso de exportación exitoso, asegúrese de contar con los siguientes requisitos legales y logísticos.
+                </p>
+                <div class="w-24 h-1.5 bg-primary mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="space-y-6">
+                {requisitos.map((req) => (
+                    <div class="card card-side bg-base-100 shadow-xl border border-base-content/5 hover:shadow-2xl transition-all duration-300 group">
+                        <figure class={`${req.color} w-24 md:w-32 flex items-center justify-center transition-transform group-hover:scale-105`}>
+                            <Icon name={req.icon} class="w-10 h-10 md:w-12 md:h-12 text-white" />
+                        </figure>
+                        <div class="card-body">
+                            <h2 class="card-title text-xl font-bold uppercase tracking-tight">{req.title}</h2>
+                            <p class="text-base-content/70 leading-relaxed">{req.description}</p>
+                            <div class="card-actions justify-end mt-2">
+                                <div class="badge badge-outline badge-sm opacity-50">Obligatorio</div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <div class="mt-12 p-6 bg-primary/10 rounded-2xl border border-primary/20 flex items-start gap-4">
+                <Icon name="lucide:info" class="w-6 h-6 text-primary shrink-0 mt-1" />
+                <div>
+                    <h3 class="font-bold text-primary">Nota importante:</h3>
+                    <p class="text-sm text-base-content/80 italic">
+                        Dependiendo del país de destino y el tipo de producto (especialmente en Hortalizas y Granos), podrían requerirse certificados adicionales de calidad o análisis de laboratorio específicos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="/contact" class="btn btn-primary px-8">
+                    ¿Tienes dudas? Contáctanos
+                </a>
+            </div>
+        </div>
+    </div>
+</Layout>

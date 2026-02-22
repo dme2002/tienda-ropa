@@ -1,0 +1,99 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Calculadora de Exportación | Eco-Export">
+    <main class="max-w-2xl mx-auto py-20 px-4">
+        <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+            <h1 class="text-3xl font-bold text-green-700 mb-6 text-center">Calculadora de Envío</h1>
+            
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-700">Unidad de Peso</label>
+                    <select id="unit" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 outline-none bg-gray-50">
+                        <option value="lb">Libras (lb)</option>
+                        <option value="kg">Kilogramos (kg)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-700">Peso del Cargamento</label>
+                    <input type="number" id="weight" placeholder="Ej: 50.00" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 outline-none" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-700">Destino Internacional</label>
+                    <select id="destination" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 outline-none bg-gray-50">
+                        <option value="USA">Estados Unidos (USA)</option>
+                        <option value="EUROPA">Europa</option>
+                        <option value="ASIA">Asia</option>
+                    </select>
+                </div>
+
+                <button id="calcBtn" class="w-full bg-green-700 text-white font-bold py-4 rounded-lg hover:bg-green-800 transition-all shadow-lg uppercase tracking-wider">
+                    Calcular Costo Total
+                </button>
+
+                <div id="resultBox" class="hidden mt-8 p-6 bg-green-50 border-2 border-green-200 rounded-xl text-center animate-fade-in">
+                    <p class="text-gray-600 text-sm uppercase tracking-widest mb-2 font-medium">Costo Estimado de Exportación</p>
+                    <h2 id="totalOutput" class="text-4xl font-black text-green-700">$0.00</h2>
+                    <div class="mt-4 p-3 bg-white rounded-lg border border-green-100">
+                        <p id="detailOutput" class="text-green-800 text-sm italic"></p>
+                    </div>
+                    <p class="text-gray-400 text-xs mt-4">** Tarifas sujetas a cambios según regulaciones portuarias.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <a href="/" class="text-green-700 font-medium hover:underline flex items-center justify-center gap-2">
+                <span>←</span> Volver a la Tienda
+            </a>
+        </div>
+    </main>
+</Layout>
+
+<script>
+    const calcBtn = document.getElementById('calcBtn');
+    
+    calcBtn?.addEventListener('click', () => {
+        const weightInput = (document.getElementById('weight') as HTMLInputElement).value;
+        const unit = (document.getElementById('unit') as HTMLSelectElement).value;
+        const destination = (document.getElementById('destination') as HTMLSelectElement).value;
+        const resultBox = document.getElementById('resultBox');
+        const totalOutput = document.getElementById('totalOutput');
+        const detailOutput = document.getElementById('detailOutput');
+
+        const weightValue = parseFloat(weightInput);
+
+        if (isNaN(weightValue) || weightValue <= 0) {
+            alert("Por favor, ingrese un peso válido mayor a cero.");
+            return;
+        }
+
+        let pesoEnLibras = unit === 'kg' ? weightValue * 2.20462 : weightValue;
+        let costoBase = pesoEnLibras * 2.5;
+        let impuesto = costoBase * 0.05;
+        let totalFinal = costoBase + impuesto;
+
+        if (resultBox && totalOutput && detailOutput) {
+            resultBox.classList.remove('hidden');
+            totalOutput.innerText = `$${totalFinal.toLocaleString('en-US', {
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2
+            })} USD`;
+
+            detailOutput.innerText = `Cálculo realizado para ${pesoEnLibras.toFixed(2)} lbs con destino a ${destination}. Incluye tarifa logística y 5% de impuestos aduaneros.`;
+        }
+    });
+</script>
+
+<style>
+    .animate-fade-in {
+        animation: fadeIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>

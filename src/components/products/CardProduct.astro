@@ -5,17 +5,27 @@ interface Props {
     title: string;
     price: number;
     images: string[];
-    stock: number;
     slug: string;
+    origin: string; // Agregado
+    category: string;
 }
 
-const { title, price, images, stock, slug } = Astro.props;
+const { title, price, images, slug, category, origin } = Astro.props;
+
+const categoryStyle = category?.toLowerCase() === "granos" 
+    ? "bg-green-600 text-white" 
+    : category?.toLowerCase() === "hortalizas" 
+        ? "bg-orange-500 text-white" 
+        : "bg-gray-200 text-gray-700";
 ---
 
 <div
     class="card bg-base-100 shadow-sm hover:shadow-xl transition-shadow duration-300 group relative rounded-xl overflow-hidden border border-base-200"
 >
-    <!-- Action Buttons -->
+    <div class={`absolute top-3 left-3 z-30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm ${categoryStyle}`}>
+        {category}
+    </div>
+
     <div
         class="absolute top-3 right-3 z-20 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
     >
@@ -27,7 +37,6 @@ const { title, price, images, stock, slug } = Astro.props;
                 name: title,
                 price: price,
                 image: images[0] || "",
-                stock: stock,
                 slug: slug,
             })}
         >
@@ -44,14 +53,12 @@ const { title, price, images, stock, slug } = Astro.props;
                 name: title,
                 price: price,
                 image: images[0] || "",
-                stock: stock,
             })}
         >
             <Icon name="lucide:shopping-cart" class="w-4 h-4" />
         </button>
     </div>
 
-    <!-- Image Slider -->
     <div
         class="relative w-full aspect-4/5 bg-gray-100 overflow-hidden group/slider"
     >
@@ -70,11 +77,9 @@ const { title, price, images, stock, slug } = Astro.props;
                     ))
                 }
             </div>
-            <!-- Pagination dots -->
             <div class="swiper-pagination"></div>
         </div>
 
-        <!-- Navigation Arrows -->
         <button
             class="swiper-prev-btn absolute left-2 top-1/2 -translate-y-1/2 z-30 btn btn-circle btn-sm bg-white hover:bg-primary hover:text-white border-none shadow-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 -translate-x-4 group-hover/slider:translate-x-0"
             aria-label="Previous Image"
@@ -90,14 +95,12 @@ const { title, price, images, stock, slug } = Astro.props;
             <Icon name="lucide:chevron-right" class="w-4 h-4" />
         </button>
 
-        <!-- Link Overlay -->
         <a
             href={`/product/${slug}`}
             class="absolute inset-0 z-10"
             aria-label={`View ${title}`}></a>
     </div>
 
-    <!-- Info -->
     <div class="p-4">
         <h3 class="font-bold text-lg mb-1 truncate" title={title}>
             <a
@@ -108,24 +111,16 @@ const { title, price, images, stock, slug } = Astro.props;
             </a>
         </h3>
 
-        <div class="flex items-center justify-between mt-2">
+        <div class="flex flex-col gap-1 mt-2">
             <span class="text-xl font-bold text-primary">
                 ${price.toLocaleString("en-US")}
             </span>
-            <div class="flex items-center gap-1 text-xs font-medium">
-                {
-                    stock > 0 ? (
-                        <span class="text-success flex items-center gap-1">
-                            <span class="w-2 h-2 rounded-full bg-success" />
-                            In Stock
-                        </span>
-                    ) : (
-                        <span class="text-error flex items-center gap-1">
-                            <span class="w-2 h-2 rounded-full bg-error" />
-                            Out of Stock
-                        </span>
-                    )
-                }
+            
+            <div class="flex items-center gap-1.5 text-gray-500">
+                <Icon name="lucide:map-pin" class="w-3.5 h-3.5 text-secondary" />
+                <span class="text-xs font-medium uppercase tracking-wider">
+                    {origin}
+                </span>
             </div>
         </div>
     </div>
@@ -145,7 +140,6 @@ const { title, price, images, stock, slug } = Astro.props;
     import { toast } from "sonner";
 
     function initProductComponents() {
-        // Swipers setup
         const containers = document.querySelectorAll(".group\\/slider");
         containers.forEach((container) => {
             const swiperEl = container.querySelector(".product-swiper");
@@ -159,9 +153,7 @@ const { title, price, images, stock, slug } = Astro.props;
                 modules: [Pagination, Navigation],
                 loop: true,
                 pagination: {
-                    el: swiperEl.querySelector(
-                        ".swiper-pagination",
-                    ) as HTMLElement,
+                    el: swiperEl.querySelector(".swiper-pagination") as HTMLElement,
                     clickable: true,
                 },
                 navigation: {
@@ -175,17 +167,13 @@ const { title, price, images, stock, slug } = Astro.props;
             });
         });
 
-        // Add to cart buttons setup
         const cartButtons = document.querySelectorAll(".add-to-cart-btn");
         cartButtons.forEach((btn) => {
             if (btn.getAttribute("data-listener")) return;
-
             btn.addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                const product = JSON.parse(
-                    btn.getAttribute("data-product") || "{}",
-                );
+                const product = JSON.parse(btn.getAttribute("data-product") || "{}");
                 const result = addToCart(product, 1);
                 if (result.success) {
                     toast.success(result.message);
@@ -196,10 +184,7 @@ const { title, price, images, stock, slug } = Astro.props;
             btn.setAttribute("data-listener", "true");
         });
 
-        // Favorite buttons setup
         const favButtons = document.querySelectorAll(".add-to-favorite-btn");
-
-        // Helper to update heart appearance
         const updateHeartStyle = (btn: Element, isFav: boolean) => {
             const icon = btn.querySelector("svg");
             if (isFav) {
@@ -209,55 +194,32 @@ const { title, price, images, stock, slug } = Astro.props;
             }
         };
 
-        // Initialize state for all favorite buttons
         favButtons.forEach((btn) => {
-            const product = JSON.parse(
-                btn.getAttribute("data-favorite") || "{}",
-            );
-            // Initial check
-            if (isFavorite(product.id)) {
-                updateHeartStyle(btn, true);
-            }
-
+            const product = JSON.parse(btn.getAttribute("data-favorite") || "{}");
+            if (isFavorite(product.id)) updateHeartStyle(btn, true);
             if (btn.getAttribute("data-fav-listener")) return;
 
             btn.addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                const product = JSON.parse(
-                    btn.getAttribute("data-favorite") || "{}",
-                );
+                const product = JSON.parse(btn.getAttribute("data-favorite") || "{}");
                 const result = toggleFavorite(product);
-
-                // Update style immediately
-                const isNowFav = isFavorite(product.id);
-                updateHeartStyle(btn, isNowFav);
-
-                if (result.success) {
-                    // Custom message based on action (added or removed)
-                    // The store returns a generic message, but we can infer or simpler just show it
-                    toast.success(result.message);
-                }
+                updateHeartStyle(btn, isFavorite(product.id));
+                if (result.success) toast.success(result.message);
             });
             btn.setAttribute("data-fav-listener", "true");
         });
 
-        // Listen to store changes to update UI if changed elsewhere (e.g. valid for multiple cards of same product)
         favoriteItems.subscribe((items) => {
             favButtons.forEach((btn) => {
-                const product = JSON.parse(
-                    btn.getAttribute("data-favorite") || "{}",
-                );
+                const product = JSON.parse(btn.getAttribute("data-favorite") || "{}");
                 const isFav = items.some((i) => i.id === product.id);
                 updateHeartStyle(btn, isFav);
             });
         });
     }
 
-    // Init on load
     initProductComponents();
-
-    // Init on View Transitions navigation
     document.addEventListener("astro:page-load", initProductComponents);
 </script>
 

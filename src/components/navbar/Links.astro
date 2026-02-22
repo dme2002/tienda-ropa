@@ -1,204 +1,195 @@
 ---
 import { Icon } from "astro-icon/components";
 
-const categories = [
-    { name: "Home", href: "/" },
+const categorias = [
+    { name: "Inicio", href: "/" },
     {
-        name: "Computers",
-        href: "/category/computers",
-        subcategories: [
-            { name: "All", href: "/category/computers" },
-            { name: "Notebooks", href: "/category/computers?sub=notebooks" },
-            { name: "Keyboards", href: "/category/computers?sub=keyboards" },
-            { name: "Monitors", href: "/category/computers?sub=monitors" },
-        ],
+        name: "Catálogo",
+        href: "/categoria/computadoras",
     },
     {
-        name: "Phones",
-        href: "/category/phones",
-        subcategories: [
-            { name: "All", href: "/category/phones" },
-            { name: "Android", href: "/category/phones?sub=android" },
-            { name: "iPhone", href: "/category/phones?sub=iphone" },
-            { name: "Accessories", href: "/category/accessories" },
-        ],
+        name: "Temporada",
+        href: "/temporada",
     },
-    { name: "Audio", href: "/category/audio" },
-    { name: "Accessories", href: "/category/accessories" },
+    {
+        name: "Exportación",
+        href: "/exportacion",
+    },
 ];
+
+
+const telefonoWhatsapp = "50497665442"; 
+const mensajeWhatsapp = encodeURIComponent("Me gustaría cotizar una carga.");
+const urlWhatsapp = `https://wa.me/${telefonoWhatsapp}?text=${mensajeWhatsapp}`;
 ---
 
-<div class="bg-primary text-primary-content shadow-sm relative z-40">
-    <div
-        class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm font-medium h-10"
-    >
-        <!-- Mobile: Categories Button -->
-        <div
-            class="flex sm:hidden w-full items-center justify-between h-full px-4"
-        >
+<nav class="bg-primary text-primary-content shadow-sm relative z-40">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm font-medium h-10">
+        
+        <div class="flex sm:hidden w-full items-center justify-between h-full px-4">
             <button
-                id="mobile-links-toggle"
+                id="toggle-enlaces-movil"
                 class="flex items-center gap-2 h-full px-2 hover:bg-white/10 transition-colors cursor-pointer"
             >
-                <span>Categories</span>
+                <span>Categorías</span>
                 <Icon
                     name="lucide:chevron-down"
-                    id="chevron-icon"
+                    id="icono-chevron"
                     class="w-4 h-4 transition-transform duration-300"
                 />
             </button>
 
             <div class="flex h-full items-center">
-                <a
-                    href="/contact"
-                    class="flex items-center h-full px-2 hover:bg-white/10 transition-colors"
-                    >Contact</a
-                >
+                <a href="/contacto" class="flex items-center h-full px-2 hover:bg-white/10 transition-colors">Contacto</a>
             </div>
         </div>
 
-        <!-- Desktop: Left Side (Mapped Categories) -->
         <div class="hidden sm:flex h-full items-center">
             {
-                categories.map((cat) =>
-                    cat.subcategories ? (
-                        <div class="dropdown dropdown-hover h-full">
-                            <div
-                                tabindex="0"
-                                role="button"
-                                class="flex items-center h-full px-4 hover:bg-white/10 text-white/90 hover:text-white transition-all cursor-pointer gap-1"
-                            >
-                                {cat.name}
-                                <Icon
-                                    name="lucide:chevron-down"
-                                    class="w-3 h-3 opacity-70"
-                                />
-                            </div>
-                            <ul
-                                tabindex="0"
-                                class="dropdown-content menu bg-base-100 rounded-box z-50 w-48 p-2 shadow-lg text-base-content border border-base-200"
-                            >
-                                {cat.subcategories.map((sub) => (
-                                    <li>
-                                        <a
-                                            href={sub.href}
-                                            class="hover:bg-primary/10 transition-colors"
-                                        >
-                                            {sub.name}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ) : (
-                        <a
-                            href={cat.href}
-                            class="flex items-center h-full px-4 hover:bg-white/10 text-white/90 hover:text-white transition-all cursor-pointer"
-                        >
-                            {cat.name}
-                        </a>
-                    ),
-                )
+                categorias.map((cat) => (
+                    <a
+                        href={cat.href}
+                        class="flex items-center h-full px-4 hover:bg-white/10 text-white/90 hover:text-white transition-all cursor-pointer"
+                    >
+                        {cat.name}
+                    </a>
+                ))
             }
         </div>
 
-        <!-- Desktop: Right Side -->
         <div class="hidden sm:flex h-full items-center">
-            <a
-                href="/about"
-                class="flex items-center h-full px-4 hover:bg-white/10 text-white/90 hover:text-white transition-all cursor-pointer"
-                >About</a
-            >
-            <a
-                href="/blog"
-                class="flex items-center h-full px-4 hover:bg-white/10 text-white/90 hover:text-white transition-all cursor-pointer"
-                >Blog</a
-            >
-            <a
-                href="/contact"
-                class="flex items-center h-full px-4 hover:bg-white/10 text-white/90 hover:text-white transition-all cursor-pointer"
-                >Contact</a
-            >
+            <a href="/nosotros" class="flex items-center h-full px-4 hover:bg-white/10 text-white/90 hover:text-white transition-all cursor-pointer">Sobre Nosotros</a>
+            <a href="/contacto" class="flex items-center h-full px-4 hover:bg-white/10 text-white/90 hover:text-white transition-all cursor-pointer">Contacto</a>
         </div>
     </div>
 
-    <!-- Mobile Dropdown Menu -->
     <div
-        id="mobile-links-menu"
+        id="menu-enlaces-movil"
         class="sm:hidden grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out bg-primary overflow-hidden brightness-95"
     >
         <div class="min-h-0 flex flex-col border-t border-white/10">
             {
-                categories.map((cat) => (
-                    <>
-                        <a
-                            href={cat.href}
-                            class="py-3 px-6 hover:bg-white/10 border-b border-white/5 transition-colors flex justify-between items-center group"
-                        >
-                            {cat.name}
-                            {cat.subcategories && (
-                                <span class="text-[10px] opacity-40 uppercase font-bold italic">
-                                    Browse
-                                </span>
-                            )}
-                        </a>
-                        {cat.subcategories && (
-                            <div class="bg-primary/30 flex flex-col">
-                                {cat.subcategories.map((sub) => (
-                                    <a
-                                        href={sub.href}
-                                        class="py-2.5 pl-12 pr-6 hover:bg-white/10 border-b border-white/5 text-xs text-white/80 transition-colors"
-                                    >
-                                        {sub.name}
-                                    </a>
-                                ))}
-                            </div>
-                        )}
-                    </>
+                categorias.map((cat) => (
+                    <a href={cat.href} class="py-3 px-6 hover:bg-white/10 border-b border-white/5 transition-colors uppercase text-[10px] tracking-wider font-bold">
+                        {cat.name}
+                    </a>
                 ))
             }
-            <div
-                class="bg-primary/50 py-2 px-6 text-white/60 uppercase text-[10px] tracking-widest font-bold"
-            >
-                More Info
-            </div>
-            <a
-                href="/about"
-                class="py-3 px-6 hover:bg-white/10 border-b border-white/5 transition-colors"
-                >About Us</a
-            >
-            <a
-                href="/blog"
-                class="py-3 px-6 hover:bg-white/10 border-b border-white/5 transition-colors"
-                >Our Blog</a
-            >
+            <a href="/nosotros" class="py-3 px-6 hover:bg-white/10 border-b border-white/5 transition-colors">Sobre Nosotros</a>
         </div>
     </div>
+</nav>
+
+<div class="contenedor-whatsapp">
+    <a
+        href={urlWhatsapp}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="boton-whatsapp grupo"
+    >
+        <span class="etiqueta-whatsapp">¡Cotizar Carga!</span>
+        <div class="circulo-icono-whatsapp">
+            <span class="efecto-pulso"></span>
+            <Icon name="lucide:message-circle" class="w-8 h-8 relative z-10" />
+        </div>
+    </a>
 </div>
 
 <script>
-    const setupToggle = () => {
-        const toggleBtn = document.getElementById("mobile-links-toggle");
-        const menu = document.getElementById("mobile-links-menu");
-        const chevron = document.getElementById("chevron-icon");
+    const configurarMenu = () => {
+        const botonToggle = document.getElementById("toggle-enlaces-movil");
+        const menu = document.getElementById("menu-enlaces-movil");
+        const chevron = document.getElementById("icono-chevron");
 
-        if (toggleBtn && menu && chevron) {
-            toggleBtn.addEventListener("click", () => {
-                const isOpen = menu.classList.contains("grid-rows-[1fr]");
-
-                if (isOpen) {
-                    menu.classList.remove("grid-rows-[1fr]");
-                    menu.classList.add("grid-rows-[0fr]");
-                    chevron.classList.remove("rotate-180");
-                } else {
-                    menu.classList.remove("grid-rows-[0fr]");
-                    menu.classList.add("grid-rows-[1fr]");
-                    chevron.classList.add("rotate-180");
-                }
+        if (botonToggle && menu && chevron) {
+            botonToggle.addEventListener("click", () => {
+                const estaAbierto = menu.classList.contains("grid-rows-[1fr]");
+                menu.classList.toggle("grid-rows-[1fr]", !estaAbierto);
+                menu.classList.toggle("grid-rows-[0fr]", estaAbierto);
+                chevron.classList.toggle("rotate-180", !estaAbierto);
             });
         }
     };
 
-    setupToggle();
-    document.addEventListener("astro:after-swap", setupToggle);
+    configurarMenu();
+    document.addEventListener("astro:after-swap", configurarMenu);
 </script>
+
+<style>
+    
+    .contenedor-whatsapp {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 9999;
+        pointer-events: none;
+    }
+
+    .boton-whatsapp {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        pointer-events: auto;
+    }
+
+    .etiqueta-whatsapp {
+        margin-right: 12px;
+        background-color: white;
+        color: #1f2937;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #f3f4f6;
+        opacity: 0;
+        transform: translateX(10px);
+        transition: all 0.3s ease;
+    }
+
+   
+    @media (min-width: 640px) {
+        .boton-whatsapp:hover .etiqueta-whatsapp {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .circulo-icono-whatsapp {
+        background-color: #22c55e;
+        color: white;
+        padding: 16px;
+        border-radius: 9999px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        position: relative;
+        transition: transform 0.3s ease;
+    }
+
+    .boton-whatsapp:hover .circulo-icono-whatsapp {
+        transform: scale(1.1);
+        background-color: #16a34a;
+    }
+
+    .efecto-pulso {
+        position: absolute;
+        inset: 0;
+        border-radius: 9999px;
+        background-color: #22c55e;
+        animation: pulso-anim 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        opacity: 0.4;
+    }
+
+    @keyframes pulso-anim {
+        75%, 100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+
+    
+    @media (max-width: 639px) {
+        .etiqueta-whatsapp {
+            display: none;
+        }
+    }
+</style>
